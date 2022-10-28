@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Phone Page</title>
+</head>
+<body>
+<div>
+  <form th:action="@{/phones/find}" method="get" th:object="${searchForm}">
+    <input type="number" name="id" th:value="${searchForm.id}"  placeholder="Enter Id" size="50" >
+    <button type="submit" >Inexact Search</button>
+  </form>
+  <form th:action="@{/phones/efind}" method="get" th:object="${searchForm}">
+    <input type="number" name="id" th:value="${searchForm.id}"  placeholder="Enter Id" size="50" >
+    <button type="submit" >Exact Search</button>
+  </form>
+</div>
+<div>
+  <span th:if="${#lists.isEmpty(phones)}">There aren't any phones!</span>
+  <span th:unless="${#lists.isEmpty(phones)}">
+        <table class="table">
+            <tr>
+                <th> Brand </th>
+                <th> Model </th>
+                <th> Cost </th>
+                <th> Colour </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <tr th:each="phone: ${phones}">
+              <td th:text="${phone.brand}"> </td>
+              <td th:text="${phone.model}"> </td>
+              <td th:text="${phone.cost}"> </td>
+              <td th:text="${phone.colour}"> </td>
+              <td>
+                <form th:action="@{'/phones/delete/'+${phone.id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+              </td>
+                <td>
+                <form th:action="@{'/phones/edit/'+${phone.id}}" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+              </td>
+            </tr>
+        </table>
+    </span>
+</div>
+<div>
+  <form th:action="@{'/phones/add'}" method="get">
+    <button type="submit">Add phone</button>
+  </form>
+</div>
+<div>
+    <form th:action="@{'/'}" method="get">
+        <button type="submit">Go to the main page</button>
+    </form>
+</div>
+</body>
+</html>

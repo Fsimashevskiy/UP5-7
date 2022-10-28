@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal User Page</title>
+</head>
+<body>
+  <div>
+    <td th:text="${user.name}"></td>
+  </div>
+  <div>
+    <td th:text="${user.surname}"></td>
+  </div>
+  <div>
+    <td th:text="${user.dateOfBirth}"></td>
+  </div>
+  <div>
+    <td th:text="${user.salary}"></td>
+  </div>
+  <div>
+    <td th:each="phone : ${user.phones}" th:text="${phone.brand} + ', '+ ${phone.model} + '; '"></td>
+  </div>
+  <div>
+    <td th:each="car : ${user.cars}" th:text="${car.brand} + ', '+ ${car.model}+ '; '"> </td>
+  </div>
+  <div>
+    <form th:action="@{'/users'}" method="get">
+      <button type="submit">Go to the users page</button>
+    </form>
+  </div>
+</body>
+</html>

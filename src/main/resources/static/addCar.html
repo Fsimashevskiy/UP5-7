@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Car</title>
+</head>
+<body>
+<form action="#" th:action="@{/cars/add}" th:object="${car}" method="post">
+  <label for="brand">Brand</label>
+  <input type="text" th:field="*{brand}" id="brand" placeholder="Brand">
+  <td th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></td>
+  <div></div>
+  <label for="model">Model</label>
+  <input type="text" th:field="*{model}" id="model" placeholder="Model">
+  <td th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></td>
+  <div></div>
+  <label for="cost">Cost</label>
+  <input type="number" th:field="*{cost}" id="cost" placeholder="Cost">
+  <td th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></td>
+  <div></div>
+  <label for="year">Year</label>
+  <input type="number" th:field="*{year}" id="year" placeholder="Year">
+  <td th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></td>
+  <div></div>
+  <select th:field="*{user}">
+    <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+  </select>
+  <input type="submit" value="Add Car">
+</form>
+</body>
+</html>

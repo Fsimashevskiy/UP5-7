@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Page</title>
+</head>
+<body>
+<div>
+    <span th:if="${#lists.isEmpty(clients)}">There aren't any clients!</span>
+    <span th:unless="${#lists.isEmpty(clients)}">
+        <table class="table">
+            <tr>
+                <th> Name </th>
+                <th> Surname </th>
+                <th> Email </th>
+                <th> Country </th>
+                <th> City </th>
+                <th> Street </th>
+                <th> House </th>
+                <th> </th>
+            </tr>
+            <tr th:each="client: ${clients}">
+              <td th:text="${client.name}"> </td>
+              <td th:text="${client.surname}"> </td>
+              <td th:text="${client.email}"> </td>
+              <td th:text="${client.address.country}"> </td>
+              <td th:text="${client.address.city}"> </td>
+              <td th:text="${client.address.street}"> </td>
+              <td th:text="${client.address.house}"> </td>
+              <td th:switch="${#lists.size(client.roles)}">
+                    <span th:case="'1'">
+                        <form th:action="@{'/admin/manage/'+${client.id}}" method="post">
+                        <button type="submit">Make an admin</button>
+                        </form>
+                    </span>
+                    <span th:case="'2'"><a>Client is an Admin</a></span>
+              </td>
+            </tr>
+        </table>
+    </span>
+</div>
+</body>
+</html>

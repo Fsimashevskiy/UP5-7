@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<div>Choose the model:</div>
+</body>
+<div>
+    <form th:action="@{'/users'}" method="get">
+        <button>User</button>
+    </form>
+</div>
+<div>
+    <form th:action="@{'/cars'}" method="get">
+        <button>Car</button>
+    </form>
+</div>
+<div>
+    <form th:action="@{'/phones'}" method="get">
+        <button>Phone</button>
+    </form>
+</div>
+<div>
+    <span th:if="${client.address == null}">
+    <form th:action="@{'/registrationAddress/'+${client.id}}" method="get">
+        <button>Add address</button>
+    </form>
+    </span>
+    <span th:unless="${client.address == null}">
+        <td th:text="${client.address.country} + ', ' + ${client.address.city} + ', ' + ${client.address.street} + ', ' + ${client.address.house}">
+    </span>
+</div>
+<div><a th:href="@{/logout}">Logout</a></div>
+</html>

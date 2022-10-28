@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Car Page</title>
+</head>
+<body>
+<div>
+  <td th:text="${car.brand}"></td>
+</div>
+<div>
+  <td th:text="${car.model}"></td>
+</div>
+<div>
+  <td th:text="${car.cost}"></td>
+</div>
+<div>
+  <td th:text="${car.year}"></td>
+</div>
+<div>
+  <td th:text="${car.user.name}+ ' is owner'"></td>
+</div>
+<div>
+  <form th:action="@{'/cars'}" method="get">
+    <button type="submit">Go to the cars page</button>
+  </form>
+</div>
+</body>
+</html>

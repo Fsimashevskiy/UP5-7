@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Client</title>
+</head>
+<body>
+<form th:action="@{/registrationAddress/{id}(id=${client.id})}" th:object="${address}" method="post">
+    <label for="country">Country</label>
+    <input type="text" th:field="*{country}" id="country" placeholder="Country">
+    <td th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></td>
+    <div></div>
+    <label for="city">City</label>
+    <input type="text" th:field="*{city}" id="city" placeholder="City">
+    <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
+    <div></div>
+    <label for="street">Street</label>
+    <input type="text" th:field="*{street}" id="street" placeholder="Street">
+    <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
+    <div></div>
+    <label for="house">House</label>
+    <input type="text" th:field="*{house}" id="house" placeholder="House">
+    <td th:if="${#fields.hasErrors('house')}" th:errors="*{house}"></td>
+    <div></div>
+  <input type="submit" value="Add address">
+</form>
+</body>
+</html>
